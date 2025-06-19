@@ -1,0 +1,275 @@
+/* Pagination Styles */
+.pagination-container {
+    margin: 2rem 0;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+}
+
+.page-item {
+    list-style: none;
+}
+
+.page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #e5e7eb;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.page-item.active .page-link {
+    background-color: #FF3600;
+    color: #fff;
+    border-color: #FF3600;
+}
+
+.page-item.disabled .page-link {
+    background-color: #f3f4f6;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+.page-link:hover:not(.disabled) {
+    background-color: #FF3600;
+    color: #fff;
+    border-color: #FF3600;
+}
+
+/* Car Card Styles */
+.project-wrapper2 {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.project-wrapper2:hover {
+    transform: translateY(-5px);
+}
+
+.image-area {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.image-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.car-meta {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: #fff;
+}
+
+.car-meta .price {
+    font-size: 1.25rem;
+    font-weight: 600;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    color: #fff;
+}
+
+.car-meta .status {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.car-meta .status.available {
+    background: #22c55e;
+}
+
+.car-meta .status.sold {
+    background: #ef4444;
+}
+
+.content-area {
+    padding: 20px;
+}
+
+.content-area .title {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+}
+
+.features-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.feature-col {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #666;
+}
+
+.feature-col i {
+    font-size: 1.125rem;
+    color: #FF3600;
+}
+
+.action-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.btn-favorite {
+    background: none;
+    border: none;
+    color: #FF3600;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.btn-favorite:hover {
+    background-color: rgba(255, 54, 0, 0.1);
+}
+
+/* Filter Styles */
+/* Tag Area Styles */
+.tag-area ul.fuel-type {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.tag-area ul.fuel-type li a {
+    display: block;
+    padding: 6px 12px;
+    background: #fff;
+    color: #000;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tag-area ul.fuel-type li a:hover,
+.tag-area ul.fuel-type li a.active {
+    background: #FF3600;
+    color: #fff;
+    border-color: #FF3600;
+}
+
+.tag-area ul.fuel-type li a.active {
+    box-shadow: 0 2px 4px rgba(255, 54, 0, 0.2);
+}
+
+.checkbox-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.checkbox-label span {
+    color: #000;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.checkbox-item > span:last-child {
+    color: #666;
+    font-size: 14px;
+}
+
+.side-box {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.side-box h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #000;
+    font-weight: 500;
+}
+
+/* Loading and Error States */
+#loading-indicator {
+    padding: 2rem;
+    text-align: center;
+}
+
+.alert {
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.alert-info {
+    background-color: #e0f2fe;
+    color: #075985;
+    border: 1px solid #bae6fd;
+}
+
+.alert-warning {
+    background-color: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fcd34d;
+}
+
+.alert-danger {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}

@@ -1,0 +1,26 @@
+{
+  "name": "autovault",
+  "version": "1.0.0",
+  "description": "Dynamic car portfolio and blog website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "cars",
+    "portfolio",
+    "blog"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "mongoose": "^5.13.20"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
