@@ -1,0 +1,135 @@
+/* Price Filter Styles */
+.price-box.side-box {
+    padding: 25px;
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.slider-container {
+    position: relative;
+    padding: 0;
+    margin-top: 20px;
+    touch-action: none;
+}
+
+.histogram {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 120px;
+    padding: 0;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.histogram-bar {
+    flex: 1;
+    background-color: #e5e7eb;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    margin: 0 1px;
+}
+
+.histogram-bar.active {
+    background-color: #FF3600;
+}
+
+.range-slider {
+    position: relative;
+    height: 4px;
+    background-color: #e5e7eb;
+    border-radius: 2px;
+    margin: 25px 0;
+}
+
+.track {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #e5e7eb;
+    border-radius: 2px;
+}
+
+#range {
+    position: absolute;
+    height: 100%;
+    background-color: #FF3600;
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+input[type="range"] {
+    position: absolute;
+    width: calc(100% + 8px);
+    height: 4px;
+    top: 0;
+    left: -4px;
+    margin: 0;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #FF3600;
+    cursor: pointer;
+    pointer-events: auto;
+    margin-top: -7px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #FF3600;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.price-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.price-labels span {
+    font-size: 15px;
+    color: #333;
+}
+
+/* Hide default range input styling */
+input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    border: none;
+    border-radius: 2px;
+}
+
+input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    border: none;
+    border-radius: 2px;
+}
+
+/* Ensure range inputs are properly layered */
+input[type="range"]:nth-child(3) {
+    z-index: 2;
+}
+
+input[type="range"]:nth-child(4) {
+    z-index: 1;
+}

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="assets/fonts/rt-icon.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/price-filter.css">
     <style>
         .spinner-border {
             display: inline-block;
@@ -663,82 +664,7 @@
     <!-- main js here -->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/api.js"></script>
-    <script>
-        // Price range slider functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            const minRange = document.getElementById('minRange');
-            const maxRange = document.getElementById('maxRange');
-            const range = document.getElementById('range');
-            const histogramBars = document.querySelectorAll('.histogram-bar');
-            const minPrice = document.getElementById('minPrice');
-            const maxPrice = document.getElementById('maxPrice');
-            let priceUpdateTimeout;
-
-            function updateRange() {
-                const minValue = parseInt(minRange.value);
-                const maxValue = parseInt(maxRange.value);
-
-                range.style.left = `${minValue}%`;
-                range.style.right = `${100 - maxValue}%`;
-
-                histogramBars.forEach((bar, index) => {
-                    const barValue = (index / (histogramBars.length - 1)) * 100;
-                    if (barValue >= minValue && barValue <= maxValue) {
-                        bar.classList.add('active');
-                    } else {
-                        bar.classList.remove('active');
-                    }
-                });
-
-                const minPriceValue = Math.round((minValue / 100) * (100000 - 50000) + 50000);
-                const maxPriceValue = Math.round((maxValue / 100) * (100000 - 50000) + 50000);
-                minPrice.textContent = `$${minPriceValue.toLocaleString()}`;
-                maxPrice.textContent = `$${maxPriceValue.toLocaleString()}`;
-
-                // Debounce the API call to prevent too many requests
-                clearTimeout(priceUpdateTimeout);
-                priceUpdateTimeout = setTimeout(() => {
-                    const carListingContainer = document.getElementById('car-listings-container');
-                    if (carListingContainer) {
-                        const loadingIndicator = document.getElementById('loading-indicator');
-                        const errorMessage = document.getElementById('error-message');
-                        
-                        loadingIndicator.style.display = 'block';
-                        errorMessage.style.display = 'none';
-                        
-                        fetchCars(`?minPrice=${minPriceValue}&maxPrice=${maxPriceValue}`)
-                            .then(cars => {
-                                renderCars(cars, carListingContainer);
-                                loadingIndicator.style.display = 'none';
-                            })
-                            .catch(error => {
-                                console.error('Error filtering cars by price:', error);
-                                errorMessage.textContent = 'Error filtering cars. Please try again.';
-                                errorMessage.style.display = 'block';
-                                loadingIndicator.style.display = 'none';
-                            });
-                    }
-                }, 500); // Wait 500ms after the last change before making API call
-            }
-
-            minRange.addEventListener('input', () => {
-                if (parseInt(minRange.value) > parseInt(maxRange.value) - 10) {
-                    minRange.value = maxRange.value - 10;
-                }
-                updateRange();
-            });
-
-            maxRange.addEventListener('input', () => {
-                if (parseInt(maxRange.value) < parseInt(minRange.value) + 10) {
-                    maxRange.value = parseInt(minRange.value) + 10;
-                }
-                updateRange();
-            });
-
-            // Initialize the range slider
-            updateRange();
-        });
-    </script>
+    <script src="assets/js/price-filter.js"></script>
 </body>
 
 

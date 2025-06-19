@@ -216,6 +216,15 @@
     border: 2px solid #ddd;
     border-radius: 4px;
     cursor: pointer;
+    accent-color: #FF3600;
+}
+
+.checkbox-label input[type="checkbox"]:checked {
+    border-color: #FF3600;
+}
+
+.checkbox-label input[type="checkbox"]:hover {
+    border-color: #FF3600;
 }
 
 .checkbox-label span {

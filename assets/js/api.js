@@ -80,9 +80,9 @@ const MOCK_DATA = {
     ]
 };
 
-// Use mock data in development mode
-const USE_MOCK = true;
-const API_BASE_URL = USE_MOCK ? null : 'http://localhost:3001/api';
+// API Configuration
+const USE_MOCK = true; // Using mock data since we don't have MongoDB in the web environment
+const API_BASE_URL = 'http://localhost:3001/api';
 
 // Debug flag
 const DEBUG = true;
@@ -486,16 +486,24 @@ function initializeCarListings() {
     function applyFilters() {
         let queryParams = [];
         
-        for (const [key, value] of Object.entries(activeFilters)) {
-            if (Array.isArray(value) && value.length > 0) {
-                queryParams.push(`${key}=${encodeURIComponent(value.join(','))}`);
-            } else if (typeof value === 'object' && value !== null) {
-                if (value.min !== undefined) queryParams.push(`min${key}=${value.min}`);
-                if (value.max !== undefined) queryParams.push(`max${key}=${value.max}`);
-            } else if (value) {
-                queryParams.push(`${key}=${encodeURIComponent(value)}`);
-            }
+        // Handle search filter
+        if (activeFilters.search) {
+            queryParams.push(`search=${encodeURIComponent(activeFilters.search)}`);
         }
+        
+        // Handle array-based filters (make, model, seats, color, fuelType)
+        ['make', 'model', 'seats', 'color', 'fuelType'].forEach(key => {
+            if (Array.isArray(activeFilters[key]) && activeFilters[key].length > 0) {
+                queryParams.push(`${key}=${encodeURIComponent(activeFilters[key].join(','))}`);
+            }
+        });
+
+        // Handle price filter
+        const urlParams = new URLSearchParams(window.location.search);
+        const minPrice = urlParams.get('minprice');
+        const maxPrice = urlParams.get('maxprice');
+        if (minPrice) queryParams.push(`minprice=${minPrice}`);
+        if (maxPrice) queryParams.push(`maxprice=${maxPrice}`);
 
         const queryString = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
         fetchCars(queryString)
@@ -561,29 +569,9 @@ function initializeCarListings() {
     }
 
     function initializePriceRange() {
-        const minRange = document.getElementById('minRange');
-        const maxRange = document.getElementById('maxRange');
-        let priceUpdateTimeout;
-
-        function updatePriceFilter() {
-            const minValue = parseInt(minRange.value);
-            const maxValue = parseInt(maxRange.value);
-            const minPrice = Math.round((minValue / 100) * (100000 - 50000) + 50000);
-            const maxPrice = Math.round((maxValue / 100) * (100000 - 50000) + 50000);
-
-            activeFilters.price = { min: minPrice, max: maxPrice };
-            applyFilters();
-        }
-
-        minRange.addEventListener('input', () => {
-            clearTimeout(priceUpdateTimeout);
-            priceUpdateTimeout = setTimeout(updatePriceFilter, 500);
-        });
-
-        maxRange.addEventListener('input', () => {
-            clearTimeout(priceUpdateTimeout);
-            priceUpdateTimeout = setTimeout(updatePriceFilter, 500);
-        });
+        // Price range is now handled by price-filter.js
+        // This function remains for compatibility but doesn't add event listeners
+        // as they are now managed in price-filter.js
     }
 
     function initializeSeatsFilter() {
